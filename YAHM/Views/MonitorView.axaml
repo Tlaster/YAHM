@@ -11,15 +11,24 @@
         <viewModels:MonitorViewModel/>
     </UserControl.DataContext>
     
-    <StackPanel>
-        <TextBlock Text="{Binding Cpu.Name}"/>
-        <TextBlock Text="{Binding Cpu.Vendor}"/>
-        <TextBlock Text="{Binding Cpu.Speed}"/>
-        <TextBlock Text="{Binding Cpu.Cores}"/>
-        <TextBlock Text="{Binding Cpu.Threads}"/>
-        <TextBlock Text="{Binding Cpu.Temperature}"/>
-        <TextBlock Text="{Binding Cpu.Load}"/>
-        <TextBlock Text="{Binding Cpu.Power}"/>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel>
+            <TextBlock Text="{Binding Cpu.Name}"/>
+            <TextBlock Text="{Binding Cpu.Vendor}"/>
+            <TextBlock Text="{Binding Cpu.Speed}"/>
+            <TextBlock Text="{Binding Cpu.Cores}"/>
+            <TextBlock Text="{Binding Cpu.Threads}"/>
+            <TextBlock Text="{Binding Cpu.Temperature}"/>
+            <TextBlock Text="{Binding Cpu.Load}"/>
+            <TextBlock Text="{Binding Cpu.Power}"/>
+        </StackPanel>
+        <StackPanel>
+            <TextBlock Text="{Binding Gpu.Name}"/>
+            <TextBlock Text="{Binding Gpu.Vendor}"/>
+            <TextBlock Text="{Binding Gpu.Temperature}"/>
+            <TextBlock Text="{Binding Gpu.Load}"/>
+            <TextBlock Text="{Binding Gpu.Power}"/>
+        </StackPanel>
     </StackPanel>
     
 </controls:Activity>

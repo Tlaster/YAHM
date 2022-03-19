@@ -14,6 +14,7 @@ namespace Tlaster.YAHM.Repository;
 interface IHardwareRepository
 {
     IObservable<CpuModel> Cpu { get; }
+    IObservable<GpuModel> Gpu { get; }
 }
 
 internal sealed class HardwareRepository: IHardwareRepository
@@ -32,7 +33,9 @@ internal sealed class HardwareRepository: IHardwareRepository
     };
 
     private readonly Subject<GenericCpu> _cpuRaw = new();
+    private readonly Subject<IHardware> _gpuRaw = new();
     public IObservable<CpuModel> Cpu => _cpuRaw.Select(CpuModel.FromGenericCpu);
+    public IObservable<GpuModel> Gpu => _gpuRaw.Select(GpuModel.FromHardware);
 
     private Task _updateTask;
 
@@ -60,10 +63,38 @@ internal sealed class HardwareRepository: IHardwareRepository
     {
         foreach (var item in hardware)
         {
-            if (item is GenericCpu cpu)
+            switch (item.HardwareType)
             {
-                cpu.Update();
-                _cpuRaw.OnNext(cpu);
+                case HardwareType.Motherboard:
+                    break;
+                case HardwareType.SuperIO:
+                    break;
+                case HardwareType.Cpu when item is GenericCpu cpu:
+                    cpu.Update();
+                    _cpuRaw.OnNext(cpu);
+                    break;
+                case HardwareType.Memory:
+                    break;
+                case HardwareType.GpuNvidia:
+                case HardwareType.GpuAmd:
+                case HardwareType.GpuIntel:
+                    item.Update();
+                    _gpuRaw.OnNext(item);
+                    break;
+                case HardwareType.Storage:
+                    break;
+                case HardwareType.Network:
+                    break;
+                case HardwareType.Cooler:
+                    break;
+                case HardwareType.EmbeddedController:
+                    break;
+                case HardwareType.Psu:
+                    break;
+                case HardwareType.Battery:
+                    break;
+                default:
+                    break;
             }
 
             if (!item.SubHardware.Any())
