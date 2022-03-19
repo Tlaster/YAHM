@@ -1,0 +1,11 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="clr-namespace:Tlaster.YAHM.ViewModels"
+    xmlns:views="clr-namespace:Tlaster.YAHM.Views"
+    x:Class="Tlaster.YAHM.RootShell">
+    <UserControl.DataContext>
+        <viewModels:RootViewModel/>
+    </UserControl.DataContext>
+    <views:MonitorView/>
+</UserControl>
