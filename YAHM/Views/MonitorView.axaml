@@ -13,7 +13,13 @@
     
     <StackPanel>
         <TextBlock Text="{Binding Cpu.Name}"/>
+        <TextBlock Text="{Binding Cpu.Vendor}"/>
+        <TextBlock Text="{Binding Cpu.Speed}"/>
+        <TextBlock Text="{Binding Cpu.Cores}"/>
+        <TextBlock Text="{Binding Cpu.Threads}"/>
         <TextBlock Text="{Binding Cpu.Temperature}"/>
+        <TextBlock Text="{Binding Cpu.Load}"/>
+        <TextBlock Text="{Binding Cpu.Power}"/>
     </StackPanel>
     
 </controls:Activity>
